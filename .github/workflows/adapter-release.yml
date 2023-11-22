@@ -86,6 +86,7 @@ jobs:
       - name: Run Gradle Build
         if: github.event_name == 'pull_request_target' && github.event.action == 'closed' && github.event.pull_request.merged == true
         run: |
+          echo "abc"
           cd apk-repo/adapter
           ./gradlew docker_push -Pdocker_organization=${{ secrets.DOCKER_ORGANIZATION }} -Pdocker_username=${{ secrets.DOCKER_USERNAME }} -Pdocker_password=${{ secrets.DOCKER_PASSWORD }} -Pimage_version=latest -PmultiArch=true
           ./gradlew docker_push -Pdocker_organization=${{ secrets.DOCKER_ORGANIZATION }} -Pdocker_username=${{ secrets.DOCKER_USERNAME }} -Pdocker_password=${{ secrets.DOCKER_PASSWORD }} -Pimage_version=${{ github.sha }} -PmultiArch=true
